@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <link rel="icon" type="image/png" href="../static/img/money.png">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+  <title>
+    Money Money
+  </title>
+  <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
+  <!--     Fonts and icons     -->
+  <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700,200" rel="stylesheet" />
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet">
+  <!-- CSS Files -->
+  <link href="../static/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="../static/css/paper-dashboard.css?v=2.0.1" rel="stylesheet" />
+</head>
+
+<body class="">
+  <div class="wrapper ">
+    <div class="sidebar" data-color="white" data-active-color="danger">
+      <div class="logo">
+        <a class="simple-text logo-mini">
+          <div class="logo-image-small">
+            <img src="{% static 'img/money.png' %}">
+          </div>
+        </a>
+        <a class="simple-text logo-normal">
+          {{profile.fullname}}
+        </a>
+      </div>
+      <div class="sidebar-wrapper">
+        <ul class="nav">
+          <li class="active ">
+            <a href="{% url 'profile' %}">
+              <i class="nc-icon nc-single-02"></i>
+              <p>User Profile</p>
+            </a>
+          </li>
+          <li>
+            <a href="{% url 'addExpense' %}">
+              <i class="nc-icon nc-cart-simple"></i>
+              <p>Add Expense</p>
+            </a>
+          </li>
+          <li>
+            <a href="{% url 'monthlyreport' %}">
+              <i class="nc-icon nc-chart-pie-36"></i>
+              <p>Monthy Expense</p>
+            </a>
+          </li>
+          <li>
+            <a href="{% url 'yearlyreport' %}">
+              <i class="nc-icon nc-chart-bar-32"></i>
+              <p>Yearly Expenses</p>
+            </a>
+          </li>
+          <li>
+            <a href="{% url 'debtloan' %}">
+              <i class="nc-icon nc-money-coins"></i>
+              <p>Debts & Loans</p>
+            </a>
+          </li>
+          <li>
+            <a href="{% url 'notifications' %}">
+              <i class="nc-icon nc-bell-55"></i>
+              <p>Notifications</p>
+            </a>
+          </li>
+          <li class="active-pro">
+            <a href="{% url 'settings' %}">
+              <i class="nc-icon nc-settings-gear-65"></i>
+              <p>Settings</p>
+            </a>
+          </li>
+          <li>
+            <a href="{% url 'contactus' %}">
+              <i class="nc-icon nc-send"></i>
+              <p>Contact Us</p>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="main-panel">
+      <!-- Navbar -->
+      <nav class="navbar navbar-expand-lg navbar-absolute fixed-top navbar-transparent">
+        <div class="container-fluid">
+          <div class="navbar-wrapper">
+            <div class="navbar-toggle">
+              <button type="button" class="navbar-toggler">
+                <span class="navbar-toggler-bar bar1"></span>
+                <span class="navbar-toggler-bar bar2"></span>
+                <span class="navbar-toggler-bar bar3"></span>
+              </button>
+            </div>
+            <a class="navbar-brand" href="">Money Money </a>
+          </div>
+
+            <div style="float:right">
+
+            </div>
+          <div class="form-group form-button">
+            <form action='logout' method='GET'>
+              {% csrf_token %}
+              <button  class="btn btn-danger btn-round" value="logout">Logout</button></form>
+          </div>
+        </div>
+      </nav>
+      <!-- End Navbar -->
+
+      <!--User Information starts-->
+      <div class="content">
+       <div class="col-md-12">
+            <div class="card card-user">
+              <div class="card-header">
+                <h5 class="card-title">Edit Profile</h5>
+              </div>
+              <div class="card-body">
+                <form method="POST" action="update_profile">
+                  {% csrf_token %}
+                  <div class="row">
+                    <div class="col-md-12">
+                      <div class="form-group">
+                        <label>First Name</label>
+                        <input type="text" class="form-control" name="FirstName" value="{{profile.fullname}}">
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-12">
+                      <div class="form-group">
+                        <label>Email address</label>
+                        <input type="email" class="form-control" name="Email" value="{{profile.email}}">
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-12">
+                      <div class="form-group">
+                        <label>Profession</label>
+                        <input type="text" class="form-control" name="Profession" value="{{profile.profession}}">
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="update ml-auto mr-auto">
+                      <button type="submit" class="btn btn-primary btn-round">Update Profile</button>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+          <div class="row" style="margin: 5px 30px 0px;">
+          <div class="col-lg-6 col-md-6 col-sm-6">
+            <div class="card card-stats">
+              <form method="post" action="update_income">
+                {% csrf_token %}
+              <div class="card-body">
+                <div class="row">
+                  <div class="col-5 col-md-4">
+                    <div class="icon-big text-center icon-success">
+                      <i class="nc-icon nc-money-coins text-success"></i>
+                    </div>
+                  </div>
+                  <div class="col-7 col-md-8">
+                    <div class="numbers">
+                      <p class="card-category">Monthly Income</p>
+<!--                      <p class="card-title" >-->
+                      <input class="card-title" style="border:none;width:100px;text-align:right;" name='MonthlyIncome' value="{{profile.monthlyincome}}"/>
+<!--                      </p>-->
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="card-footer ">
+                <hr>
+                <div class="stats">
+                  <i class="fa fa-refresh"></i>
+                  <button style="border:none;background-color:white" type="submit">Edit Income</button>
+                </div>
+              </div>
+              </form>
+            </div>
+          </div>
+          <div class="col-lg-6 col-md-6 col-sm-6">
+            <div class="card card-stats">
+              <div class="card-body ">
+                <div class="row">
+                  <div class="col-5 col-md-4">
+                    <div class="icon-big text-center icon-warning">
+                      <i class="nc-icon nc-money-coins text-warning"></i>
+                    </div>
+                  </div>
+                  <div class="col-7 col-md-8">
+                    <div class="numbers">
+                      <p class="card-category">Monthy Expense</p>
+                      <p class="card-title">{{profile.monthlyexpense}}<p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="card-footer ">
+                <hr>
+                <div class="stats">
+                  <i class="fa fa-refresh"></i>
+                  <a href="update_expense" type="submit">Update</a>
+                </div>
+              </div>
+            </div>
+          </div>
+          </div>
+          <div class="row" style="margin: 5px 30px 0px;">
+          <div class="col-lg-6 col-md-6 col-sm-6">
+            <div class="card card-stats">
+              <div class="card-body ">
+                <div class="row">
+                  <div class="col-5 col-md-4">
+                    <div class="icon-big text-center icon-primary">
+                      <i class="nc-icon nc-money-coins text-primary"></i>
+                    </div>
+                  </div>
+                  <div class="col-7 col-md-8">
+                    <div class="numbers">
+                      <p class="card-category">Yearly Income</p>
+                      <p class="card-title">{{profile.totalincome}}<p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="card-footer ">
+                <hr>
+                <div class="stats">
+                  <i class="fa fa-clock-o"></i>
+                  January - March
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-6 col-md-6 col-sm-6">
+            <div class="card card-stats">
+              <div class="card-body ">
+                <div class="row">
+                  <div class="col-5 col-md-4">
+                    <div class="icon-big text-center icon-danger">
+                      <i class="nc-icon nc-money-coins text-danger"></i>
+                    </div>
+                  </div>
+                  <div class="col-7 col-md-8">
+                    <div class="numbers">
+                      <p class="card-category">Yearly Expense</p>
+                      <p class="card-title">{{profile.totalexpense}}<p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="card-footer ">
+                <hr>
+                <div class="stats">
+                  <i class="fa fa-clock-o"></i>
+                  January - March
+                </div>
+              </div>
+            </div>
+          </div>
+          </div>
+      </div>
+      </div>
+  <!--   Core JS Files   -->
+  <script src="../static/js/core/jquery.min.js"></script>
+  <script src="../static/js/core/popper.min.js"></script>
+  <script src="../static/js/core/bootstrap.min.js"></script>
+  <script src="../static/js/plugins/perfect-scrollbar.jquery.min.js"></script>
+  <!-- Chart JS -->
+  <script src="../static/js/plugins/chartjs.min.js"></script>
+  <!-- Control Center for Now Ui Dashboard: parallax effects, scripts for the example pages etc -->
+  <script src="../static/js/paper-dashboard.min.js?v=2.0.1" type="text/javascript"></script><!-- Paper Dashboard DEMO methods, don't include it in your project! -->
+  <script src="../static/demo/demo.js"></script>
+  <script>
+    $(document).ready(function() {
+      // Javascript method's body can be found in static/static-for-demo/js/demo.js
+      demo.initChartsPages();
+    });
+  </script>
+</body>
+
+</html>
