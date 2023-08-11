@@ -1,4 +1,5 @@
 # MoneyMoney
 
-Money-Money is a Web-Application to help individuals to track their expenses and get insights using various Visualizations. 
-It is created using the django framework and using its MVT architecture,
+Money-Money - a Web-Application to help individuals to track their expenses with insightful visualizations. 
+It is created using the Python - Django framework, making use of the MVT (Model View Template) architecture.
+For the frontend, it uses HTML, CSS, and Javascript (and some open-source templates😜).
