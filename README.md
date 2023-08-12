@@ -1,7 +1,7 @@
 # Expense Tracking Application
 
-This web application created using Dango Framework is an application to help individuals track their expenses with insightful visualizations. 
-It uses of the MVT (Model View Template) architecture of Django framework. For the frontend, it uses HTML, CSS, and Javascript. The data is stored in the MySQL local server and can be managed by the admin site also.
+This web application created using Django Framework is an application to help individuals track their expenses with insightful visualizations. 
+It uses the MVT (Model View Template) architecture of Django framework. For the frontend, it uses HTML, CSS, and Javascript. The data is stored in the MySQL local server and can be managed by the admin site also.
 
 The MVT Architecture is a software design pattern used by the Django Framework to create web applications. It determines the total structure and workflow of a Django application. It separates the logic and the output of the application.
 
