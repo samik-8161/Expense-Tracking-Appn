@@ -9,7 +9,7 @@ The MVT Architecture is a software design pattern used by the Django Framework t
 
 Following is the Simple UML Diagram for the Application.
 
-<img src="screenshots/Diagram.png" alt="UML Diagram" class="inline"/>
+<img src="screenshots/UML_diagram.png" style="width:560px" alt="UML Diagram" class="inline"/>
 
 The ER Diagram for the Database shows different entities and types of relationships among them used in the application.
 
